@@ -12,4 +12,23 @@ public class RowLamp {
 		return arrayLamp;
 	}
 
+	public void turnOnLamp() {
+		for (int i = 0; i < arrayLamp.length; i++) {
+			if (!arrayLamp[i]) {
+				arrayLamp[i] = true;
+				break;
+			}
+		}
+	}
+	
+	public int getNumberOfLampsOn(){
+		int numberOfLampsOn = 0;
+		for (int i = 0; i < arrayLamp.length; i++) {
+			if (!arrayLamp[i]) {
+				break;
+			}
+			numberOfLampsOn = i + 1;
+		}
+		return numberOfLampsOn;
+	}
 }
