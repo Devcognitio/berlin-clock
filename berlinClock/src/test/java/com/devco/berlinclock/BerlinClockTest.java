@@ -3,14 +3,19 @@ package com.devco.berlinclock;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalTime;
 
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import com.devco.berlinclock.model.BerlinClockFormat;
+import com.devco.berlinclock.model.RowLamp;
 
 public class BerlinClockTest {
+	
 
 	@Test
 	public void shouldReturnBerlinClockFormatWithLocalTime16_53_01() {
@@ -140,6 +145,24 @@ public class BerlinClockTest {
 		assertThat(berlin_00_17_00.toString(), is(expectedBerlinClockString_00_17_00));
 		assertThat(berlin_00_59_00.toString(), is(expectedBerlinClockString_00_59_00));
 
+	}
+	
+	
+	@Test
+	public void testturnOnTopHourLampsShouldReturnMock(){
+		LocalTime hourInput_16_17_00 = LocalTime.of(16, 17, 00);
+		BerlinClockFormat berlinClockMock = new BerlinClockFormat();
+		RowLamp rowLamp = new RowLamp(4);
+		berlinClockMock.setTopHourLamps(rowLamp);
+		BerlinClockUtil berlinClockUtilMock = mock(BerlinClockUtil.class);
+		Mockito.when(berlinClockUtilMock
+				.turnOnTopHourLamps(isA(LocalTime.class), isA(BerlinClockFormat.class)))
+				.thenReturn(berlinClockMock);
+		
+		String expectedBerlinClockString_16_17_00 = "|O|\n|O||O||O||O|\n|O||O||O||O|\n|O||O||O||O||O||O||O||O||O||O||O|\n|O||O||O||O|";
+		
+		BerlinClockFormat berlin_16_17_00 = berlinClockUtilMock.turnOnTopHourLamps(hourInput_16_17_00, berlinClockMock);	
+		assertThat(berlin_16_17_00.toString(), is(expectedBerlinClockString_16_17_00));
 	}
 
 }

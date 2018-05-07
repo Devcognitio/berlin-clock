@@ -32,10 +32,11 @@ public class BerlinClockUtil {
 	}
 
 	//TODO mockearlo
-	protected void turnOnTopHourLamps(LocalTime hourInput, BerlinClockFormat result) {
+	protected BerlinClockFormat turnOnTopHourLamps(LocalTime hourInput, BerlinClockFormat result) {
 		for (int i = 0; i < numberOfTopHoursLampsToTurnOn(hourInput.getHour()); i++) {
 			result.getTopHourLamps().turnOnLamp();
 		}
+		return result;
 	}
 
 	private int numberOfTopHoursLampsToTurnOn(int hour) {
