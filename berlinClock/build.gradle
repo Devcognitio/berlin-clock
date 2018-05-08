@@ -18,6 +18,7 @@ dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.18.3'
 	testCompile group: 'org.powermock', name: 'powermock-mockito-release-full', version: '1.5.4', ext: 'pom'
 }
 
@@ -32,3 +33,17 @@ uploadArchives {
        }
     }
 }
+
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+  }
+}
+
+apply plugin: "org.sonarqube"
