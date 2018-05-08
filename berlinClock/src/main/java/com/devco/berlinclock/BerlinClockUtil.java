@@ -31,7 +31,6 @@ public class BerlinClockUtil {
 		result.setSecondsTopLamp(hourInput.getSecond() % 2 == 0);
 	}
 
-	//TODO mockearlo
 	protected void turnOnTopHourLamps(LocalTime hourInput, BerlinClockFormat result) {
 		for (int i = 0; i < numberOfTopHoursLampsToTurnOn(hourInput.getHour()); i++) {
 			result.getTopHourLamps().turnOnLamp();
@@ -42,14 +41,13 @@ public class BerlinClockUtil {
 		return hour / 5;
 	}
 	
-	//TODO POWERMOCK
-	private void turnOnLowerHourLamps(LocalTime hourInput, BerlinClockFormat result) {
+	protected static void turnOnLowerHourLamps(LocalTime hourInput, BerlinClockFormat result) {
 		for (int i = 0; i < numberOfLowerHoursLampsToTurnOn(hourInput.getHour()); i++) {
 			result.getLowerHourLamps().turnOnLamp();
 		}
 	}
 	
-	private int numberOfLowerHoursLampsToTurnOn(int hour) {
+	private static int numberOfLowerHoursLampsToTurnOn(int hour) {
 		return hour % 5 ;
 	}
 	
